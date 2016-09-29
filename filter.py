@@ -15,7 +15,8 @@ def function(n):
 #Scatter
 data = comm.scatter(data, root=0)
 print("rank", rank, "recieved", data)
-data = (function(data), data)
+if not function(data):
+	data = None
 
 #Gather
 data = comm.gather(data, root=0)
